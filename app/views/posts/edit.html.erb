@@ -1,0 +1,20 @@
+<h3><%= @post.user_id %>님의 글 수정</h3>
+
+<form action="/posts/update/<%= @post.id %>" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <label for="post_title">제목</label>
+    <input type="text" name="title" value="<%= @post.title %>" id="post_title">
+        <br><hr>
+    <label for="post_shortinfo">간단설명</label>
+    <textarea name="content" id="post_shortinfo" style="width:400px;height:50x">
+    <%= @post.shortinfo %>
+    </textarea>
+    <br><hr>
+    <label for="post_content">내용</label>
+    <textarea name="content" id="post_content" style="width:400px;height:300px"><%= @post.content %></textarea>
+    <br><hr>
+    <label for="post_image">이미지</label>
+    <input type="file" name="image" id="post_image" value="<%= @post.image %>">
+    <br><hr>
+    <button type="submit">제출</button>
+</form>

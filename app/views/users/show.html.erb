@@ -1,0 +1,49 @@
+<h2><%= @user.email %>의 Wallet</h2>
+
+<h4>내가 좋아요 한 글들</h4>
+
+<% @user.liked_posts.each do |post| %>
+<div class="card" style="width: 18rem;">
+  <% if post.image.attached? %>
+  <img src="<%= url_for(post.image) %>" class="card-img-top">
+  <% else %>
+  image 없음
+  <% end %>
+<hr>
+
+  <div class="card-body">
+    <h3 class="card-title"><%= post.title %></h3>
+    <hr>
+    <p font-size="3"><%= post.user.email %>의 글</p>
+    <hr>
+    <p class="card-text"><%= simple_format(post.shortinfo) %></p>
+    <hr>
+    <p class="card-text"><%= simple_format(post.content) %></p>
+<% end %>
+
+<hr>
+
+
+
+
+
+<h4>내가 작성한 글들</h4>
+
+<% @user.posts.each do |post| %>
+<div class="card" style="width: 18rem;">
+  <% if post.image.attached? %>
+  <img src="<%= url_for(post.image) %>" class="card-img-top">
+  <% else %>
+  image 없음
+  <% end %>
+<hr>
+
+  <div class="card-body">
+    <h3 class="card-title"><%= post.title %></h3>
+    <hr>
+    <p font-size="3"><%= post.user.email %>의 글</p>
+    <hr>
+    <p class="card-text"><%= simple_format(post.shortinfo) %></p>
+    <hr>
+    <p class="card-text"><%= simple_format(post.content) %></p>
+<% end %>

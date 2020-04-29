@@ -1,0 +1,46 @@
+
+<div class="card" style="width: 18rem;">
+  <% if @post.image.attached? %>
+  <img src="<%= url_for(@post.image) %>" class="card-img-top" alt="...">
+  <% else %>
+  image 없음
+<hr>
+<% end %>
+  <div class="card-body">
+    <h3 class="card-title"><%= @post.title %></h3>
+    <hr>
+    <h6 class="card-title"><%= @post.id %> 의 글</h6>
+    <p font-size="3"><%= @post.user.email %></p>
+    <hr>
+    <p class="card-text"><%= simple_format(@post.shortinfo) %></p>
+    <hr>
+    <p class="card-text"><%= simple_format(@post.content) %></p>
+    <a href="/posts/index" class="btn btn-primary">처음으로</a>
+  </div>
+</div>
+<hr>
+좋아요 수 : <%= @post.likes.count %>
+<hr>
+<a href="/posts/likes/<%= @post.id %>">좋아요</a>
+<hr>
+
+<h3>댓글 작성</h3>
+
+<form action="/posts/<%= @post.id %>/comments/create" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    내용 : <input type="text" name="body">
+    <button>제출</button>
+</form>
+
+<hr>
+
+<h3>댓글 리스트</h3>
+<!-- 특정 글의 댓글들을 보여준다.-->
+<% @post.comments.each do |comment| %>
+    작성자 : <%= comment.user.email %>
+    내용 : <%= comment.body %>
+    <hr>
+<% end %>
+
+
+<a href="/posts/index">리스트로 이동</a>

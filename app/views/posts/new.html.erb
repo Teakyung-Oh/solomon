@@ -1,0 +1,28 @@
+<h3>여행지 추가!</h3>
+
+<form action="/posts/create" method="POST" enctype="multipart/form-data">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <label for="post_title">여행지명</label>
+     <input type="text" name="title" id="post_title" placeholder="ex. 뉴욕">
+    <br><hr>
+    <label for="post_shortinfo">간단설명</label>
+    <textarea class="form-control" name="shortinfo" id="post_shortinfo" style="width:400px;height:50x" placeholder="여행지에 대한 한줄설명"></textarea>
+    <br><hr>
+    <label for="post_content">여행지 설명</label>
+    <textarea name="content" id="post_content" style="width:400px;height:300px">
+1. 국가:
+2. 언어:
+3. 화폐:
+4. 환율:
+5. 전기 코드:
+6. 대표 유명관광지:
+7. 쇼핑:
+8. 비행시간:
+9. Etc.:
+    </textarea>
+    <br><hr>
+    <label for="post_image">이미지</label>
+    <input type="file" name="image" id="post_image">
+    <br><hr>
+    <button type="submit">제출</button>
+</form>

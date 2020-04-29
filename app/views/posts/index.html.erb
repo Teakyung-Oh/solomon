@@ -1,0 +1,98 @@
+<% if false %> 
+    
+    <% if user_signed_in? %>
+        <%= current_user.email %> 님 안녕하세요.
+        <a href="/users/sign_out" data-method="delete">로그아웃</a>
+    <% else %>
+        <a href="/users/sign_in">로그인</a>
+    <% end %>
+    <hr>
+    <% @posts.each do |post| %> 
+        title : <%= post.title %>
+        content : <%= post.content %>
+        <a href="/posts/show/<%= post.id %>">보기</a>
+        <a href="/posts/edit/<%= post.id %>">수정</a>
+        <a href="/posts/destroy/<%= post.id %>">삭제</a>
+        <hr>
+    <% end %> 
+    <a href="<%= posts_new_path %>">글 작성하러 가기</a>
+
+<% end %>
+
+<link rel="stylesheet" type="text/css" href="/css/card.css">
+
+<div class="index_body">
+<% if user_signed_in? %>
+    <%= current_user.email %> 님 안녕하세요.
+    <a href="/users/sign_out" data-method="delete">로그아웃</a>
+<% else %>
+    <a href="/users/sign_in">로그인</a>
+<% end %>
+<hr>
+<% @posts.shuffle.each do |post| %>
+    
+    <div class="col-md-4 mt-5">
+      <div class="card text-center">
+  <% if post.image.attached? %>
+  <img class="card-img-top" src="<%= url_for(post.image) %>" alt="Card image cap">
+  <% else %>
+  image 없음
+  <% end %>
+<hr>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+    <hr>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11880.492291371422!2d12.4922309!3d41.8902102!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1524815927977" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <a href="https://goo.gl/maps/drPW7JdCdy62"><address class="font-italic">Piazza del Colosseo, 1, 00184 Roma RM</address></a>
+    </div>
+    <p class="card-text"><%= simple_format(post.content) %></p>
+    <hr>
+    <div class="card-footer text-muted">
+      <div class="row">
+        <div class="col">
+          <a href=""><i class="fas fa-map"></i></a>
+        </div>
+        <div class="col">
+          <a href="mailto:test@test.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="col">
+          <a href="tel:+123456789"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+    </div>
+      <a href="/posts/show/<%= post.id %>" class="btn btn-primary">보기</a>
+      <a href="/posts/edit/<%= post.id %>" class="btn btn-secondary">수정</a>
+      <a href="/posts/destroy/<%= post.id %>"class="btn btn-warning">삭제</a>
+    </div>
+  </div>
+<% end %>
+    <a href="<%= posts_new_path %>">글 작성하러 가기</a>
+
+<div class="text-center">
+<nav class="navbar navbar-expand-lg fixed-bottom navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/posts/index">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/my_page">Wallet</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/posts/new">New</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Reservation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Account</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+</div>
